@@ -45,7 +45,6 @@ public class Progressbar {
         let currentBarWidth = Float(progress) / Float(length) * Float(maxWidth - counterContent.count)
         var barContent = String(repeating: self.fillingChar, count: Int(currentBarWidth) - 2)
         barContent += String(repeating:" ", count:barWidth - barContent.count)
-        let spaceCount = maxWidth - (counterContent.count + barContent.count)
         print("\u{1B}[1A\u{1B}[K" + "[" + barContent + "]" + counterContent)
         fflush(__stdoutp)
     }
