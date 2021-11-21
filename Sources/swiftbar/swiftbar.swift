@@ -25,9 +25,14 @@ public class Progressbar {
         print("") // pls dont hate me ;-;
     }
     
+    public func getProgress() -> Int {
+        return self.progress
+    }
+    
     public func setProgress(_ p: Int) {
         self.progress = p
     }
+    
     
     public func setProgressAndPrint(_ p: Int) {
         self.progress = p
@@ -35,11 +40,13 @@ public class Progressbar {
     }
     
     private func printProgress() {
-        let counterContent = "[\(self.progress)/\(length)]"
+        let counterContent = " [\(self.progress)/\(length)]"
+        let barWidth = maxWidth - (counterContent.count + 2)
         let currentWidth = Float(progress) / Float(length) * Float(maxWidth - counterContent.count - 1)
-        let barContent = String(repeating: self.fillingChar, count: Int(currentWidth))
+        var barContent = String(repeating: self.fillingChar, count: Int(currentWidth) - 2)
+        barContent += String(repeating:" ", count:barWidth - barContent.count)
         let spaceCount = maxWidth - (counterContent.count + barContent.count)
-        print("\u{1B}[1A\u{1B}[K" + barContent + String(repeating: " ", count: spaceCount) + counterContent)
+        print("\u{1B}[1A\u{1B}[K" + "[" + barContent + "] + String(repeating: " ", count: spaceCount) + counterContent)
         fflush(__stdoutp)
     }
 }

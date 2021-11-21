@@ -24,5 +24,8 @@ let package = Package(
         .executableTarget(
             name: "Example",
             dependencies: ["swiftbar"]),
+        .executableTarget(
+            name: "Example2",
+            dependencies: ["swiftbar"])
     ]
 )
