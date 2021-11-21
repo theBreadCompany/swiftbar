@@ -8,7 +8,7 @@
 import Foundation
 import swiftbar
 
-let testArray = [0, 4, 3, 21, 35, 6]
+let testArray = [0, 4, 3, 21, 35, 16, 45, 264, 30, 2]
 var result = 0
 
 print("Doing heavy calculation noone understands.") // print any important stuff first
