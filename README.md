@@ -9,7 +9,7 @@ This module is (yet) rather... simple. I. e. create a bar with the length of ```
 
 If you want to see it in action, clone (```git clone https://github.com/theBreadCompany/swiftbar.git```) the repo, ```cd``` into it, type ```swift build``` and execute either ```.build/debug/Example``` or ```.build/debug/Example2```.
 
-
+Please keep in mind that there may be unexpected behaviour as the Xcode "terminal" isn't an actual terminal.
 
 ## TODO
 - Write tests
