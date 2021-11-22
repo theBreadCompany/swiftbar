@@ -16,3 +16,4 @@ Please keep in mind that there may be unexpected behaviour as the Xcode "termina
 - Introduce a tqdm (python) inspired Collection that print a bar as it is being subscripted
 - Add operators like ```+``` to simplify updating the bar 
 - add styles
+- add speed of iterations, including units
