@@ -50,3 +50,23 @@ public class Progressbar {
         fflush(__stdoutp)
     }
 }
+
+extension Progressbar {
+    
+    static func += (lhs: inout Progressbar, rhs: Int) {
+        lhs.progress += rhs
+    }
+    
+    static func + (lhs: inout Progressbar, rhs: Int) {
+        lhs += rhs
+    }
+    
+    static func -= (lhs: inout Progressbar, rhs: Int) {
+        lhs.progress -= rhs
+    }
+    
+    static func - (lhs: inout Progressbar, rhs: Int) {
+        lhs -= rhs
+    }
+    
+}
