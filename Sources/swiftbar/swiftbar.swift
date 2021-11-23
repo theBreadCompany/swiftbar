@@ -1,7 +1,6 @@
 // Improvable Progressbar with dumb hacks
 // powered by https://stackoverflow.com/questions/25483292/update-current-line-with-command-line-tool-in-swift
 
-import Darwin
 import Foundation
 
 public class Progressbar {
