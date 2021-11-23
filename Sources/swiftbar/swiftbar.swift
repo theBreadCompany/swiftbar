@@ -6,13 +6,13 @@ import Foundation
 
 public class Progressbar {
     
-    private let length: Int
+    private let total: Int
     private let maxWidth: Int
     private let fillingChar: String
     private var progress: Int
     
-    public init(length: Int, maxWidth: Int, filledWith char: String = "#") {
-        self.length = length
+    public init(total: Int, maxWidth: Int, filledWith char: String = "#") {
+        self.total = total
         self.maxWidth = maxWidth
         self.fillingChar = {
             if char.count > 1 {
@@ -41,9 +41,9 @@ public class Progressbar {
     private func printProgress() {
         if progress == 0 { print("") }
         let _maxWidth = maxWidth - 2
-        let counterContent = " [\(self.progress)/\(length)]"
+        let counterContent = " [\(self.progress)/\(total)]"
         let barWidth = _maxWidth - (counterContent.count)
-        let currentBarWidth = Float(progress) / Float(length) * Float(barWidth)
+        let currentBarWidth = Float(progress) / Float(total) * Float(barWidth)
         var barContent = String(repeating: self.fillingChar, count: Int(currentBarWidth))
         barContent += String(repeating:" ", count:barWidth - barContent.count)
         print("\u{1B}[1A\u{1B}[K" + "[" + barContent + "]" + counterContent)
