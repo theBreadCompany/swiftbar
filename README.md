@@ -13,9 +13,9 @@ Please keep in mind that there may be unexpected behaviour as the Xcode "termina
 
 ## TODO
 - Write tests
-- Introduce a tqdm (python) inspired Collection that print a bar as it is being subscripted
-- add styles
-- add speed of iterations, including units
+- Introduce a tqdm (python) inspired collection that print a bar as it is being subscripted
+- Add styles
+- Add speed of iterations, including units
 
 ## Support
 I am happy about any way of supporting me, may it be suggesting new ideas or reporting bugs ^^.
