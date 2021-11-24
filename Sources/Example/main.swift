@@ -8,7 +8,7 @@
 import Foundation
 import swiftbar
 
-let bar = Progressbar(length: 10, maxWidth: 84) // 84 is the standard width of a macOS terminal
+let bar = Progressbar(total: 10, maxWidth: 80) // 80 is the standard width of a macOS terminal
 bar.setProgressAndPrint(3)
 Thread.sleep(forTimeInterval: .init(2))
 bar.setProgressAndPrint(7)

@@ -17,10 +17,10 @@ public class Progressbar {
      - parameter length: The total count of iterations, stages of execution or similiar
      - parameter maxWidth: The broadest width the bar should occupy in characters
      - parameter filledWith: The character that is used to fill the bar. Strings longer than 1 are cut down to the first character.
-     - note: 84 is used as the default maxWidth as this is the default width of a macOS terminal window.
+     - note: 80 is used as the default maxWidth as this is the default width of a macOS terminal window.
      */
     @available(*, deprecated, message: "Please use init(total:maxWidth:filledWith:")
-    public init(length: Int, maxWidth: Int = 84, filledWith char: String = "#") {
+    public init(length: Int, maxWidth: Int = 80, filledWith char: String = "#") {
         self.total = length
         self.maxWidth = maxWidth
         self.fillingChar = {
@@ -37,9 +37,9 @@ public class Progressbar {
      - parameter total: The total count of iterations, stages of execution or similiar
      - parameter maxWidth: The broadest width the bar should occupy in characters
      - parameter filledWith: The character that is used to fill the bar. Strings longer than 1 are cut down to the first character.
-     - note: 84 is used as the default maxWidth as this is the default width of a macOS terminal window.
+     - note: 80 is used as the default maxWidth as this is the default width of a macOS terminal window.
      */
-    public init(total: Int, maxWidth: Int = 84, filledWith char: String = "#") {
+    public init(total: Int, maxWidth: Int = 80, filledWith char: String = "#") {
         self.total = total
         self.maxWidth = maxWidth
         self.fillingChar = {
@@ -102,9 +102,8 @@ extension Progressbar {
      - parameter rhs: the progress that has been made
      - note: simply use as i. e. bar += 1
      */
-    static func += (lhs: inout Progressbar, rhs: Int) {
-        lhs.progress += rhs
-        lhs.printProgress()
+    public static func += (lhs: inout Progressbar, rhs: Int) {
+        lhs.setProgressAndPrint(lhs.getProgress() + rhs)
     }
     
     /**
@@ -113,9 +112,8 @@ extension Progressbar {
      - parameter rhs: the progress that shall be reverted
      - note: simply use as i. e. bar -= 1
      */
-    static func -= (lhs: inout Progressbar, rhs: Int) {
-        lhs.progress -= rhs
-        lhs.printProgress()
+   public static func -= (lhs: inout Progressbar, rhs: Int) {
+       lhs.setProgressAndPrint(lhs.getProgress() - rhs)
     }
     
     
