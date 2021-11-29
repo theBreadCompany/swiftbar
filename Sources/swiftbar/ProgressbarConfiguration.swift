@@ -20,7 +20,7 @@ public struct ProgressbarConfiguration: Codable {
     public var progressBarStlye: ProgressbarStyle
     public var statsStyle: StatsStyle
     
-    public init(total: Int, maxWidth: Int, terminatingSymbols: TerminatingSymbol, barCharacter: BarCharacter, progressBarStyle: ProgressbarStyle, statsStyle: StatsStyle) {
+    public init(total: Int, maxWidth: Int, terminatingSymbols: TerminatingSymbol = TerminatingSymbol(), barCharacter: BarCharacter = BarCharacter(), progressBarStyle: ProgressbarStyle = .preciseBar, statsStyle: StatsStyle = .init(color: .standardWhite)) {
         self.total = total
         self.maxWidth = maxWidth
         self.terminatingSymbols = terminatingSymbols
@@ -40,7 +40,7 @@ public struct TerminatingSymbol: Codable {
     public var terminatingSymbols: TerminatingSymbols
     public var color: ANSIColors
     
-    public init(terminatingSymbols: TerminatingSymbols, color: ANSIColors) {
+    public init(terminatingSymbols: TerminatingSymbols = .squareBrackets, color: ANSIColors = .standardWhite) {
         self.terminatingSymbols = terminatingSymbols
         self.color = color
     }
@@ -51,11 +51,15 @@ public struct TerminatingSymbol: Codable {
  */
 public struct BarCharacter: Codable {
     
-    public var character: Character
+    public var character: String
     public var color: ANSIColors
     
-    public init(character: Character, color: ANSIColors) {
-        self.character = character
+    public init(character: String = "#", color: ANSIColors = .standardWhite) {
+        self.character = {
+            if character.isEmpty { return "#" }
+            if character.count > 2 { return character.dropLast(character.count - 2).description }
+            return character
+        }()
         self.color = color
     }
     
@@ -68,7 +72,7 @@ public struct StatsStyle: Codable {
     
     public var color: ANSIColors
     
-    public init(color: ANSIColors) {
+    public init(color: ANSIColors = .standardWhite) {
         self.color = color
     }
 }
@@ -104,6 +108,7 @@ public enum ProgressbarStyle: Codable {
     case simpleBar, preciseBar
 }
 
+/*
 extension Character: Codable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.unkeyedContainer()
@@ -122,3 +127,4 @@ extension Character: Codable {
         }
     }
 }
+*/
