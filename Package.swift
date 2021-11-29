@@ -29,6 +29,9 @@ let package = Package(
             dependencies: ["swiftbar"]),
         .executableTarget(
             name: "Example3",
+            dependencies: ["swiftbar"]),
+        .testTarget(
+            name: "swiftbarTests",
             dependencies: ["swiftbar"])
     ]
 )

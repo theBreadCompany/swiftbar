@@ -12,7 +12,6 @@ If you want to see it in action, clone (```git clone https://github.com/theBread
 Please keep in mind that there may be unexpected behaviour as the Xcode "terminal" isn't an actual terminal.
 
 ## TODO
-- Write tests
 - Introduce a tqdm (python) inspired collection that print a bar as it is being subscripted
 - Add styles
 - Enable custom stlyes by adding cases entries to the ProgressbarStyle enum and 
