@@ -13,11 +13,21 @@ import Foundation
  */
 public struct ProgressbarConfiguration: Codable {
     
+    public var total: Int
+    public var maxWidth: Int
     public var terminatingSymbols: TerminatingSymbol
     public var barCharacter: BarCharacter
     public var progressBarStlye: ProgressbarStyle
-    public var length: Int
-    public var maxWidth: Int
+    public var statsStyle: StatsStyle
+    
+    public init(total: Int, maxWidth: Int, terminatingSymbols: TerminatingSymbol, barCharacter: BarCharacter, progressBarStyle: ProgressbarStyle, statsStyle: StatsStyle) {
+        self.total = total
+        self.maxWidth = maxWidth
+        self.terminatingSymbols = terminatingSymbols
+        self.barCharacter = barCharacter
+        self.progressBarStlye = progressBarStyle
+        self.statsStyle = statsStyle
+    }
     
 }
 
@@ -29,6 +39,11 @@ public struct TerminatingSymbol: Codable {
     
     public var terminatingSymbols: TerminatingSymbols
     public var color: ANSIColors
+    
+    public init(terminatingSymbols: TerminatingSymbols, color: ANSIColors) {
+        self.terminatingSymbols = terminatingSymbols
+        self.color = color
+    }
 }
 
 /**
@@ -37,8 +52,25 @@ public struct TerminatingSymbol: Codable {
 public struct BarCharacter: Codable {
     
     public var character: Character
-    public var characterColor: ANSIColors
+    public var color: ANSIColors
     
+    public init(character: Character, color: ANSIColors) {
+        self.character = character
+        self.color = color
+    }
+    
+}
+
+/**
+ struct to define the statistics style
+ */
+public struct StatsStyle: Codable {
+    
+    public var color: ANSIColors
+    
+    public init(color: ANSIColors) {
+        self.color = color
+    }
 }
 
 /**
@@ -57,18 +89,18 @@ public enum TerminatingSymbols: String, Codable {
  enum holding the values for ansi colors aka colors that can be used to represent text in the terminal
  */
 public enum ANSIColors: String, Codable {
-    case red = "\u{001B}[0;31m]"
-    case green = "\u{001B}[0;32m]"
-    case yellow = "\u{001B}[0;33m]"
-    case blue = "\u{001B}[0;34m]"
-    case purple = "\u{001B}[0;35m]"
-    case cyan = "\u{001B}[0;36m]"
-    case white = "\u{001B}[0;37m]"
+    case red = "\u{001B}[0;31m"
+    case green = "\u{001B}[0;32m"
+    case yellow = "\u{001B}[0;33m"
+    case blue = "\u{001B}[0;34m"
+    case purple = "\u{001B}[0;35m"
+    case cyan = "\u{001B}[0;36m"
+    case white = "\u{001B}[0;37m"
     
 }
 
 public enum ProgressbarStyle: Codable {
-    case simpleBar, preciseBar, pingPong
+    case simpleBar, preciseBar
 }
 
 extension Character: Codable {
