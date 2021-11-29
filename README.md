@@ -15,6 +15,7 @@ Please keep in mind that there may be unexpected behaviour as the Xcode "termina
 - Write tests
 - Introduce a tqdm (python) inspired collection that print a bar as it is being subscripted
 - Add styles
+- Enable custom stlyes by adding cases entries to the ProgressbarStyle enum and 
 - Add speed of iterations, including units
 
 ## Support
