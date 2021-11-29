@@ -13,7 +13,7 @@ let c = ProgressbarConfiguration(
     maxWidth: 80,
     terminatingSymbols: .init(terminatingSymbols: .pipes, color: .cyan),
     barCharacter: .init(character: Character("I"), color: .green),
-    progressBarStyle: .simpleBar,
+    progressBarStyle: .preciseBar,
     statsStyle: .init(color: .blue))
 
 var bar = Progressbar(configuration: c)

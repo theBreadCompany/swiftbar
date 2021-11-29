@@ -96,6 +96,7 @@ public enum ANSIColors: String, Codable {
     case purple = "\u{001B}[0;35m"
     case cyan = "\u{001B}[0;36m"
     case white = "\u{001B}[0;37m"
+    case standardWhite = ""
     
 }
 
