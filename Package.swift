@@ -1,4 +1,4 @@
-// swift-tools-version:5.5
+// swift-tools-version:5.0
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -10,6 +10,15 @@ let package = Package(
         .library(
             name: "swiftbar",
             targets: ["swiftbar"]),
+        .executable(
+            name: "Example",
+            targets: ["Example"]),
+        .executable(
+            name: "Example2",
+            targets: ["Example2"]),
+        .executable(
+            name: "Example3",
+            targets: ["Example3"])
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -21,13 +30,13 @@ let package = Package(
         .target(
             name: "swiftbar",
             dependencies: []),
-        .executableTarget(
+        .target(
             name: "Example",
             dependencies: ["swiftbar"]),
-        .executableTarget(
+        .target(
             name: "Example2",
             dependencies: ["swiftbar"]),
-        .executableTarget(
+        .target(
             name: "Example3",
             dependencies: ["swiftbar"]),
         .testTarget(
