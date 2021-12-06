@@ -12,7 +12,7 @@ final class swiftbarTests: XCTestCase {
     
     var config = ProgressbarConfiguration(total: 100, maxWidth: 80,
                                           terminatingSymbols: .init(terminatingSymbols: .squareBrackets, color: .standardWhite),
-                                          barCharacter: .init(character: Character("#"), color: .standardWhite),
+                                          barCharacter: .init(character: "#", color: .standardWhite),
                                           progressBarStyle: .preciseBar,
                                           statsStyle: .init(color: .standardWhite))
     
