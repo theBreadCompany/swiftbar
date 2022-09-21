@@ -6,9 +6,9 @@ import Foundation
 /**
  This class provides an easy-to-use progress bar.
  */
-public class Progressbar {
+open class Progressbar {
     
-    public let config: ProgressbarConfiguration
+    public let config: Configuration
     private var progress: Int
     
     /**
@@ -19,7 +19,7 @@ public class Progressbar {
      */
     @available(*, deprecated, message: "Please use init(total:maxWidth:filledWith:")
     public init(length: Int, maxWidth: Int = 80, filledWith char: String = "#") {
-        self.config = ProgressbarConfiguration(
+        self.config = Configuration(
             total: length,
             maxWidth: maxWidth,
             terminatingSymbols: .init(terminatingSymbols: .squareBrackets, color: .white),
@@ -36,7 +36,7 @@ public class Progressbar {
      - note: 80 is used as the default maxWidth as this is the default width of a macOS terminal window.
      */
     public init(total: Int, maxWidth: Int = 80, filledWith char: String = "#") {
-        self.config = ProgressbarConfiguration(
+        self.config = Configuration(
             total: total,
             maxWidth: maxWidth,
             terminatingSymbols: .init(terminatingSymbols: .squareBrackets, color: .white),
@@ -50,7 +50,7 @@ public class Progressbar {
      Initialize a progress bar
      - parameter configuration: The existing configuration you want to use
      */
-    public init(configuration: ProgressbarConfiguration) {
+    public init(configuration: Configuration) {
         self.config = configuration
         self.progress = 0
     }
@@ -59,7 +59,7 @@ public class Progressbar {
      - returns: the progress the bar is currently at
      - note: this may not always be the progress that is actually shown
      */
-    public func getProgress() -> Int {
+    open func getProgress() -> Int {
         return self.progress
     }
     
@@ -67,7 +67,7 @@ public class Progressbar {
      Sets the progress without printing
      - parameter p: The new progress status of the progress bar
      */
-    public func setProgress(_ p: Int) {
+    open func setProgress(_ p: Int) {
         self.progress = p
     }
     
@@ -75,7 +75,7 @@ public class Progressbar {
      Sets the progress and updates the progress bar
      - parameter p: The new progress status of the progress bar
      */
-    public func setProgressAndPrint(_ p: Int) {
+    open func setProgressAndPrint(_ p: Int) {
         if progress == 0 { print("") } // bad hack to ensure that the previous line wont be overwritten
         self.progress = p
         self.printProgress()
@@ -85,35 +85,9 @@ public class Progressbar {
         return c.rawValue + s + (c.rawValue.isEmpty ? "" : "\u{001B}[0m")
     }
     
-    public func currentState() -> String {
-        let _maxWidth = self.config.maxWidth - 2
-        let counterContent = " [\(self.progress)/\(self.config.total)]"
-        
-        var barContent = ""
-        switch self.config.progressBarStlye {
-        case .simpleBar:
-            let barWidth = _maxWidth - (counterContent.count)
-            let currentBarWidth = Int(Float(progress) / Float(self.config.total) * Float(barWidth))
-            barContent =
-            Progressbar.colorize(self.config.terminatingSymbols.terminatingSymbols.rawValue.first!.description, with: self.config.terminatingSymbols.color)
-            + Progressbar.colorize(String(repeating: self.config.barCharacter.character, count: Int(currentBarWidth)), with: self.config.barCharacter.color)
-            + String(repeating: " ", count: barWidth - currentBarWidth)
-            + Progressbar.colorize(self.config.terminatingSymbols.terminatingSymbols.rawValue.last!.description, with: self.config.terminatingSymbols.color)
-            + Progressbar.colorize(counterContent, with: self.config.statsStyle.color)
-        case .preciseBar:
-            let percentCounter = "[\(Int(Float(self.progress) / Float(self.config.total) * 100))%] "
-            let barWidth = _maxWidth - (counterContent.count + percentCounter.count)
-            let currentBarWidth = Int(Float(progress) / Float(self.config.total) * Float(barWidth))
-            barContent =
-            Progressbar.colorize(percentCounter, with: self.config.statsStyle.color)
-            + Progressbar.colorize(self.config.terminatingSymbols.terminatingSymbols.rawValue.first!.description, with: self.config.terminatingSymbols.color)
-            + Progressbar.colorize(String(repeating: self.config.barCharacter.character, count: currentBarWidth), with: self.config.barCharacter.color)
-            + String(repeating: " ", count: barWidth - currentBarWidth)
-            + Progressbar.colorize(self.config.terminatingSymbols.terminatingSymbols.rawValue.last!.description, with: self.config.terminatingSymbols.color)
-            + Progressbar.colorize(counterContent, with: self.config.statsStyle.color)
-        }
-        
-        return barContent
+    open func currentState() -> String {
+        // no, this is not the way how stuff should be rendered. But its the best way to provide extendable styles
+        return config.progressBarStyle.bar(progress, config)
     }
     
     /**

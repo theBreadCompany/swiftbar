@@ -12,10 +12,10 @@ If you want to see it in action, clone (```git clone https://github.com/theBread
 Please keep in mind that there may be unexpected behaviour as the Xcode "terminal" isn't an actual terminal.
 
 ## TODO
-- Introduce a tqdm (python) inspired collection that prints a bar as it is being subscripted
-- Add styles
-- Enable custom styles by adding cases entries to the ProgressbarStyle enum and 
-- Add speed of iterations, including units
+[x] Introduce a tqdm (python) inspired collection that prints a bar as it is being subscripted
+[x] Add styles
+[x] Enable custom styles 
+[] Add speed of iterations, including units
 
 ## Support
 I am happy about any way of supporting me, may it be suggesting new ideas or reporting bugs ^^.

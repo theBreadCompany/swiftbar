@@ -13,12 +13,6 @@ let package = Package(
         .executable(
             name: "Example",
             targets: ["Example"]),
-        .executable(
-            name: "Example2",
-            targets: ["Example2"]),
-        .executable(
-            name: "Example3",
-            targets: ["Example3"])
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -32,12 +26,6 @@ let package = Package(
             dependencies: []),
         .target(
             name: "Example",
-            dependencies: ["swiftbar"]),
-        .target(
-            name: "Example2",
-            dependencies: ["swiftbar"]),
-        .target(
-            name: "Example3",
             dependencies: ["swiftbar"]),
         .testTarget(
             name: "swiftbarTests",
