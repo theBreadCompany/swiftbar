@@ -3,6 +3,12 @@
 
 import Foundation
 
+#if os(Linux)
+    import Glibc
+#else
+    import Darwin.C
+#endif
+
 /**
  This class provides an easy-to-use progress bar.
  */
@@ -95,7 +101,7 @@ open class Progressbar {
      */
     private func printProgress() {
         print("\u{1B}[1A\u{1B}[K" + self.currentState())
-        fflush(__stdoutp)
+        fflush(stdout)
     }
 }
 
